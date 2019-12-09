@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-Hans" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Planarity Test</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" integrity="sha256-LSUpTY0kkXGKvcBC9kbmgibmx3NVVgJvAEfTZbs51mU=" crossorigin="anonymous"></script>
+    <script src="js/lib/d3.v5.min.js"></script>
+    <script src="js/lib/jquery-3.4.0.min.js"></script>
+    <script src="js/lib/popper.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script type="module" src="js/graph.js"></script>
+    
+    <script src="js/custom.js"></script>
+    <link rel="stylesheet" href="css/multilingual.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138420636-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-138420636-1');
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand en" href="/">Planarity Test</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Expand">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link en" href="#" id="K5">K5</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link en" href="#" id="K33">K33</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link en" href="#" id="AK5">Almost_K5</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link en" href="#" id="AK33">Almost_K33</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link en" href="#" id="Custom">Custom</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <!-- <li class="nav-item active">
+                    <a class="nav-link checkbox-inline">
+                        <input type="checkbox" checked data-toggle="toggle" id="animation"> Animated
+                    </a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="switchLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Language
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="?lang=en">English</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin:auto;width:100%;">
+        <div class="row col-12 ">
+            <div class="col-12 text-center en">
+                <p id="planarity"></p>
+            </div>
+        </div>
+        <div id="editor-wrapper" class="">
+            <center><svg width="1280" height="960"></svg></center>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row col-12 page-footer">
+        <div class="col-12 text-center en">
+            <p>Last update: 19/12/07, <a href="https://github.com/Bluefissure/PlanarityTest/">Github</a></p>
+            <p>Powered by Yupeng Zhang(yz936), Lu Jin(lj245), Yaocheng Tong(yt220).</p>
+        </div>
+    </div>
+    <script type="text/javascript" >
+        $(function () {
+            let lang = getLang();
+            let initialized = false;
+            showCurrentLang();
+            document.title = {
+                "en": "Planarity Test"
+            }[lang];
+        });
+        function source2md(text){
+            var converter = new showdown.Converter({tables: true});
+            var mdhtml = converter.makeHtml(text);
+            return mdhtml;
+        }
+        function convert(){
+            var text = document.getElementById("oritextarea").value;
+            document.getElementById("preview").innerHTML = source2md(text);
+            document.getElementById("ngatextarea").value = md2nga(text);
+        }
+    </script>
+</body>
+</html>
