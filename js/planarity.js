@@ -160,8 +160,7 @@ export class PlanarityChecker {
       if (this.Stack.length > 0) {
         let P = this.Stack.pop();
         // trim left interval
-        // console.log('trim interval, p:' + p + ' v:' + v);
-        // console.log(P);
+        // seems some bugs out here
         while (P.L.high != null && P.L.high[1] == p)
           P.L.high = this.ref[P.L.high];
         if (P.L.high == null && P.L.low != null) {

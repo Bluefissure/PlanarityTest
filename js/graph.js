@@ -377,7 +377,7 @@ document.getElementById('K33').onclick = function() {
   K33();
 };
 
-document.getElementById('AK5').onclick = function(){
+document.getElementById('AK5').onclick = function() {
   AK5();
 };
 
